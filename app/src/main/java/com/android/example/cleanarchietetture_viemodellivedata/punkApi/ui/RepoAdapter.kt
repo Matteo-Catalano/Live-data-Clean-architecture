@@ -1,9 +1,11 @@
-package com.android.example.cleanarchietetture_viemodellivedata
+package com.android.example.cleanarchietetture_viemodellivedata.punkApi
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.example.cleanarchietetture_viemodellivedata.R
+import com.android.example.cleanarchietetture_viemodellivedata.punkApi.usacase.model.PunkRepository
 
 class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val repoName: TextView
@@ -12,7 +14,7 @@ class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 }
 
-class RepoAdapter(val repoResults: List<BeersItem>) : RecyclerView.Adapter<RepoViewHolder>() {
+class RepoAdapter(val repoResults: List<PunkRepository>) : RecyclerView.Adapter<RepoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val repoView =

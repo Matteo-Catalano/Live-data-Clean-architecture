@@ -1,6 +1,8 @@
-package com.android.example.cleanarchietetture_viemodellivedata
+package com.android.example.cleanarchietetture_viemodellivedata.punkApi.network.dto
 
-data class BeersItem(
+import com.android.example.cleanarchietetture_viemodellivedata.punkApi.usacase.model.PunkRepository
+
+data class RepoDto(
     val abv: Double,
     val attenuation_level: Double,
     val brewers_tips: String,
@@ -19,3 +21,4 @@ data class BeersItem(
     val target_fg: Int,
     val target_og: Double
 )
+fun RepoDto.toPunkRepository() = PunkRepository(this.name)

@@ -9,13 +9,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainViewModel : ViewModel() {
-    private var retrofit = Retrofit.Builder()
-        .baseUrl("https://api.punkapi.com/v2/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    var punkService = retrofit.create(PunkService::class.java)
+class MainViewModel (private val punkService: PunkService): ViewModel() {
 
     private var _repos = MutableLiveData<BeersResult>()
     val repos: LiveData<BeersResult>
@@ -24,6 +18,8 @@ class MainViewModel : ViewModel() {
     private var _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
+
+
 
 
     fun retrieveRepos(beername : String){
@@ -35,5 +31,9 @@ class MainViewModel : ViewModel() {
                 _error.value = e.localizedMessage
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }

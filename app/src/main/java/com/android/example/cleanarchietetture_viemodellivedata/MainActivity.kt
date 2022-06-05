@@ -8,24 +8,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import retrofit2.http.GET
-import retrofit2.http.Path
-
-
-interface PunkService {
-    @GET("{beers}")
-    suspend fun listRepos(@Path("beers") user: String?): BeersResult
-}
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
+    private lateinit var punkProvider : PunkProvider
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
+        viewModel = (application as MyApplication).mainViewModelFactory.create(MainViewModel::class.java)
 
         observerRepos()
         viewModel.retrieveRepos("beers")
